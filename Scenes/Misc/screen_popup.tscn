@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://rxlnqipljo7f"]
+
+[ext_resource type="Texture2D" uid="uid://b70m1p2p4eqkg" path="res://Images/Misc/ScreenLarge.png" id="1_7j1hw"]
+[ext_resource type="Theme" uid="uid://bgbns33d71o6p" path="res://Scenes/Misc/title_theme.tres" id="2_j0qut"]
+[ext_resource type="Theme" uid="uid://tddux1ou2ypm" path="res://Scenes/Misc/new_theme.tres" id="3_ot37h"]
+
+[node name="ScreenPopup" type="CanvasLayer"]
+
+[node name="Holder" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Holder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0392157, 0.0980392, 0.392157)
+
+[node name="TextureRect" type="TextureRect" parent="Holder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.09
+anchor_right = 0.05
+anchor_bottom = 0.09
+offset_right = 1720.0
+offset_bottom = 880.0
+texture = ExtResource("1_7j1hw")
+
+[node name="MagnetMovement" type="Control" parent="Holder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title2" type="Label" parent="Holder/MagnetMovement"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.175
+anchor_right = 0.5
+anchor_bottom = 0.175
+offset_left = -596.5
+offset_right = 596.5
+offset_bottom = 91.0
+grow_horizontal = 2
+theme = ExtResource("2_j0qut")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "Magnet Movement"
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Holder/MagnetMovement"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.275
+anchor_right = 0.874
+anchor_bottom = 0.493
+offset_left = -20.0
+offset_right = 69.9199
+offset_bottom = 0.039978
+grow_horizontal = 2
+theme = ExtResource("3_ot37h")
+theme_override_colors/default_color = Color(0, 1, 0.862745, 1)
+theme_override_constants/line_separation = 10
+bbcode_enabled = true
+text = "[center]To use the magnet, first move your mouse to the direction that you want to use it relative to the player (e.g. put it below the player to use it downwards). Then, press the LEFT mouse button to ATTRACT yourself to walls or other objects to you, or the RIGHT mouse button to REPEL yourself from walls or other objects from you.  [/center]"

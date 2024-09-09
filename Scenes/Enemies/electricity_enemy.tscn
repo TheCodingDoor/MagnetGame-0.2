@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3 uid="uid://b7eoxoikpin3h"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/electricity_enemy.gd" id="1_5020i"]
+[ext_resource type="Texture2D" uid="uid://bvkdw4ytteksa" path="res://Images/Enemies/Electricity Enemy V2.png" id="1_law7p"]
+[ext_resource type="PackedScene" uid="uid://duaxhs0kiil4d" path="res://Scenes/Enemies/electricity_dash_ghost.tscn" id="2_ljnth"]
+[ext_resource type="Texture2D" uid="uid://c86opsmy6xfa4" path="res://Images/Enemies/ElectricityEnemyZoom.png" id="3_xr2sb"]
+[ext_resource type="AudioStream" uid="uid://46bqaxpgf1i4" path="res://Audio/SFX/ElectricityEnemyZap.mp3" id="5_mt4vp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rn12j"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k40hx"]
+radius = 21.0238
+
+[sub_resource type="Animation" id="Animation_noa6f"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_gge88"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Idle:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_al6de"]
+_data = {
+"Idle": SubResource("Animation_noa6f"),
+"RESET": SubResource("Animation_gge88")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ww1iq"]
+radius = 400.0
+
+[node name="ElectricityEnemy" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 0
+motion_mode = 1
+script = ExtResource("1_5020i")
+ghost = ExtResource("2_ljnth")
+
+[node name="Idle" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_law7p")
+hframes = 2
+vframes = 2
+
+[node name="Zoom" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -12)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_xr2sb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rn12j")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_k40hx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+libraries = {
+"": SubResource("AnimationLibrary_al6de")
+}
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="GhostTimer" type="Timer" parent="."]
+wait_time = 0.15
+autostart = true
+
+[node name="AggroArea" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_ww1iq")
+
+[node name="Zap" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mt4vp")
+volume_db = -25.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="GhostTimer" to="." method="_on_ghost_timer_timeout"]
+[connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]

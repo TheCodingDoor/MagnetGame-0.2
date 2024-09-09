@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://b53fedwhsu0x6"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/pause_menu.gd" id="1_7vx5f"]
+[ext_resource type="Texture2D" uid="uid://dri3r0bc5cevv" path="res://Images/UI/PauseMenuBackground.png" id="1_jcs1b"]
+[ext_resource type="Theme" uid="uid://bgbns33d71o6p" path="res://Scenes/Misc/title_theme.tres" id="3_xq1o5"]
+[ext_resource type="PackedScene" uid="uid://f1cy3wb2ii1w" path="res://Scenes/Misc/large_button.tscn" id="4_ofus2"]
+[ext_resource type="Theme" uid="uid://tddux1ou2ypm" path="res://Scenes/Misc/new_theme.tres" id="7_lvwmq"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_7vx5f")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0392157, 0.0980392, 0.392157)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -860.0
+offset_top = -440.0
+offset_right = 860.0
+offset_bottom = 440.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_jcs1b")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.2
+anchor_right = 0.5
+anchor_bottom = 0.2
+offset_left = -430.0
+offset_right = 430.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme = ExtResource("3_xq1o5")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "Game Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -362.0
+offset_top = -64.0
+offset_right = 362.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 175
+
+[node name="LargeButton" parent="HBoxContainer" instance=ExtResource("4_ofus2")]
+layout_mode = 2
+label = "Settings"
+next_scene = "res://Scenes/Misc/settings_screen.tscn"
+type = 1
+
+[node name="LargeButton2" parent="HBoxContainer" instance=ExtResource("4_ofus2")]
+layout_mode = 2
+label = "Main Menu"
+next_scene = "res://Scenes/Misc/title_screen.tscn"
+type = 1
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 0.8
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_lvwmq")
+theme_override_colors/font_color = Color(0, 0.392157, 0.392157, 1)
+text = "(Press ESC to unpause)"

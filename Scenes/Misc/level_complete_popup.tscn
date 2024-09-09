@@ -1,0 +1,98 @@
+[gd_scene load_steps=6 format=3 uid="uid://cslqofefob6o6"]
+
+[ext_resource type="Texture2D" uid="uid://g5shkoa01s88" path="res://Images/UI/LevelCompletePopup.png" id="1_eucf3"]
+[ext_resource type="Script" path="res://Scenes/Misc/level_complete_popup.gd" id="1_ifu0s"]
+[ext_resource type="Theme" uid="uid://bgbns33d71o6p" path="res://Scenes/Misc/title_theme.tres" id="2_vx0fh"]
+[ext_resource type="Theme" uid="uid://tddux1ou2ypm" path="res://Scenes/Misc/new_theme.tres" id="3_ljft6"]
+[ext_resource type="PackedScene" uid="uid://f1cy3wb2ii1w" path="res://Scenes/UI/large_button.tscn" id="9_t8lyl"]
+
+[node name="LevelCompletePopup" type="CanvasLayer"]
+script = ExtResource("1_ifu0s")
+
+[node name="Holder" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Holder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.0392157, 0.0980392, 0.686275)
+
+[node name="TextureRect" type="TextureRect" parent="Holder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -350.0
+offset_right = 600.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_eucf3")
+
+[node name="Label" type="Label" parent="Holder/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.11
+anchor_right = 0.5
+anchor_bottom = 0.11
+offset_left = -550.0
+offset_right = 550.0
+offset_bottom = 73.0
+grow_horizontal = 2
+theme = ExtResource("2_vx0fh")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "LEVEL COMPLETE!"
+
+[node name="Label2" type="Label" parent="Holder/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.325
+anchor_right = 0.5
+anchor_bottom = 0.325
+offset_left = -322.0
+offset_top = -30.0
+offset_right = 322.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ljft6")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "Where would you like to go next?"
+
+[node name="LargeButton" parent="Holder/TextureRect" instance=ExtResource("9_t8lyl")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_top = 0.5
+anchor_right = 0.15
+anchor_bottom = 0.5
+label = "Next Level"
+type = 3
+
+[node name="LargeButton2" parent="Holder/TextureRect" instance=ExtResource("9_t8lyl")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.5
+anchor_right = 0.55
+anchor_bottom = 0.5
+label = "Main Menu"
+next_scene = "res://Scenes/Misc/title_screen.tscn"
+type = 1
+
+[connection signal="nextLevel" from="Holder/TextureRect/LargeButton" to="." method="_on_large_button_next_level"]

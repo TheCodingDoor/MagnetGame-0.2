@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://c11qx8rpcxwku"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/tutorial_screen.gd" id="1_mcld5"]
+[ext_resource type="Texture2D" uid="uid://dpruu2fem0gft" path="res://Images/Environment/TutorialScreen.png" id="1_xmc42"]
+[ext_resource type="Texture2D" uid="uid://d2b77ue6xhymi" path="res://Images/Misc/InputPrompt.png.png" id="3_q3475"]
+[ext_resource type="PackedScene" uid="uid://rxlnqipljo7f" path="res://Scenes/Misc/screen_popup.tscn" id="4_pf568"]
+[ext_resource type="AudioStream" uid="uid://by77pue4l0ngy" path="res://Audio/SFX/TutorialScreenInteract.mp3" id="5_rjj74"]
+
+[sub_resource type="Animation" id="Animation_amfva"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_wiwgm"]
+resource_name = "ScreenIdle"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Screen:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kjqoo"]
+_data = {
+"RESET": SubResource("Animation_amfva"),
+"ScreenIdle": SubResource("Animation_wiwgm")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjv4e"]
+size = Vector2(64, 48)
+
+[node name="TutorialScreen" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_mcld5")
+
+[node name="Screen" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_xmc42")
+hframes = 3
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ScreenIdle"
+libraries = {
+"": SubResource("AnimationLibrary_kjqoo")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tjv4e")
+
+[node name="Prompt" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -40)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_q3475")
+
+[node name="ScreenPopup" parent="." instance=ExtResource("4_pf568")]
+
+[node name="Interact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rjj74")
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

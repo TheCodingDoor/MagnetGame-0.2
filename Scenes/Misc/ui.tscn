@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1ax000a8bqhj"]
+
+[ext_resource type="Texture2D" uid="uid://by1eigsth4ts" path="res://Images/UI/MangetBarBox.png" id="1_miflm"]
+[ext_resource type="Texture2D" uid="uid://dlgd4ajku3cex" path="res://Images/UI/MagnetPowerBarBackground.png" id="2_mn1xa"]
+[ext_resource type="Texture2D" uid="uid://b5py3wqbmcusj" path="res://Images/UI/MagnetPowerBarBorder.png" id="3_wrpco"]
+[ext_resource type="Texture2D" uid="uid://cdbldpdcqm3bc" path="res://Images/UI/MagnetPowerBarEnergy.png" id="4_kd1og"]
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 192.0
+texture = ExtResource("1_miflm")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.01
+anchor_bottom = 0.01
+offset_right = 384.0
+offset_bottom = 96.0
+max_value = 360.0
+value = 100.0
+texture_under = ExtResource("2_mn1xa")
+texture_over = ExtResource("3_wrpco")
+texture_progress = ExtResource("4_kd1og")

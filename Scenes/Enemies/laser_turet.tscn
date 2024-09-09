@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpx3iqfile53x"]
+
+[ext_resource type="Texture2D" uid="uid://bvrfysvalfnwv" path="res://Images/Enemies/LaserTurretBase.png" id="1_imob7"]
+[ext_resource type="Script" path="res://Scenes/Enemies/laser_turet.gd" id="1_u5lvx"]
+[ext_resource type="Texture2D" uid="uid://btrt1f33cdir6" path="res://Images/Enemies/TurretHead.png" id="3_wodfq"]
+[ext_resource type="AudioStream" uid="uid://cnoni2gl4nqyd" path="res://Audio/SFX/LaserTurretChargeUp.mp3" id="4_sa54d"]
+[ext_resource type="AudioStream" uid="uid://djjon1v1odxa7" path="res://Audio/SFX/LaserTurretBlast.mp3" id="5_akx47"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvkwd"]
+size = Vector2(10000, 26)
+
+[node name="LaserTuret" type="StaticBody2D"]
+position = Vector2(0, 35)
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_u5lvx")
+
+[node name="Base" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_imob7")
+
+[node name="Head" type="Sprite2D" parent="."]
+position = Vector2(0, -35)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_wodfq")
+
+[node name="Line2D" type="Line2D" parent="Head"]
+show_behind_parent = true
+position = Vector2(0, 140)
+scale = Vector2(4, 4)
+points = PackedVector2Array(0, -35, -2, -35)
+width = 2.0
+default_color = Color(0, 1, 0.862745, 1)
+
+[node name="RayCast2D" type="RayCast2D" parent="Head"]
+position = Vector2(-216, 0)
+target_position = Vector2(-10000, 0)
+collision_mask = 2
+
+[node name="Area2D" type="Area2D" parent="Head"]
+collision_layer = 4
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head/Area2D"]
+position = Vector2(-5216, 0)
+shape = SubResource("RectangleShape2D_nvkwd")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -19, 7, -19, 12, -2, 21, 8, 31, 8, 31, 17, 39, 25, 39, 30, -39, 30, -39, 25, -31, 17, -31, 8, -21, 8, -11, -3)
+
+[node name="FireTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="LaserTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChargeUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_sa54d")
+volume_db = -20.0
+bus = &"SFX"
+
+[node name="LaserBlast" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_akx47")
+volume_db = -20.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="Head/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="FireTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]

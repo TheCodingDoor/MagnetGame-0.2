@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgbg7yaskijj6"]
+
+[ext_resource type="Texture2D" uid="uid://jrfrv0jd04t8" path="res://Images/Objects/MagnetBomb.png" id="1_4vgt4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mr5c0"]
+radius = 16.0
+
+[node name="MagnetBomb" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 32
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_4vgt4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mr5c0")

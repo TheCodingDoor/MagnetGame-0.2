@@ -1,0 +1,186 @@
+[gd_scene load_steps=15 format=3 uid="uid://bi1nh85ps7pjh"]
+
+[ext_resource type="Texture2D" uid="uid://d1tljouibjh0c" path="res://Images/UI/TitleBackground.png" id="1_7rdmw"]
+[ext_resource type="Script" path="res://Scenes/Misc/settings_screen.gd" id="1_u5gvi"]
+[ext_resource type="PackedScene" uid="uid://0k4u0fo5dpyt" path="res://Scenes/Misc/back_button.tscn" id="3_qbbkt"]
+[ext_resource type="PackedScene" uid="uid://bws8jx8a5w3qe" path="res://Scenes/UI/volume_slider.tscn" id="4_nysh1"]
+[ext_resource type="Theme" uid="uid://tddux1ou2ypm" path="res://Scenes/Misc/new_theme.tres" id="4_u458x"]
+[ext_resource type="Texture2D" uid="uid://dv7t43dxvujo" path="res://Images/UI/CheckBoxSelected.png" id="6_moitf"]
+[ext_resource type="Texture2D" uid="uid://bcp6ao2e6rvap" path="res://Images/UI/CheckBoxDeselected.png" id="7_7v15t"]
+[ext_resource type="Texture2D" uid="uid://j1he827x70xr" path="res://Images/UI/TitleScreenMagnet1.png" id="8_365t2"]
+[ext_resource type="Texture2D" uid="uid://cbkfuqowouhr3" path="res://Images/UI/TitleScreenMagnet2.png" id="9_thkio"]
+[ext_resource type="Texture2D" uid="uid://cgru18bh4cv1e" path="res://Images/UI/TitleScreenMagnet3.png" id="10_ptjyv"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cvksa"]
+frames = 3
+frame_0/texture = ExtResource("8_365t2")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("9_thkio")
+frame_1/duration = 0.5
+frame_2/texture = ExtResource("10_ptjyv")
+frame_2/duration = 0.5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8i141"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7xqd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ggfbs"]
+
+[node name="SettingsScreen" type="CanvasLayer"]
+script = ExtResource("1_u5gvi")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("1_7rdmw")
+
+[node name="Magnets" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.075
+anchor_right = 0.75
+anchor_bottom = 0.075
+offset_right = 104.0
+offset_bottom = 192.0
+texture = SubResource("AnimatedTexture_cvksa")
+
+[node name="VSyncCheckbox" type="CheckBox" parent="."]
+anchors_preset = -1
+anchor_left = 0.385
+anchor_top = 0.29
+anchor_right = 0.385
+anchor_bottom = 0.29
+offset_right = 214.0
+offset_bottom = 40.0
+theme = ExtResource("4_u458x")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.784314, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.392157, 0.392157, 1)
+theme_override_icons/checked = ExtResource("6_moitf")
+theme_override_icons/unchecked = ExtResource("7_7v15t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8i141")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_f7xqd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ggfbs")
+text = "V-Sync"
+alignment = 1
+
+[node name="FullScreenCheckbox" type="CheckBox" parent="."]
+anchors_preset = -1
+anchor_left = 0.385
+anchor_top = 0.325
+anchor_right = 0.385
+anchor_bottom = 0.325
+offset_right = 214.0
+offset_bottom = 40.0
+theme = ExtResource("4_u458x")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0.784314, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_disabled_color = Color(0, 0.392157, 0.392157, 1)
+theme_override_icons/checked = ExtResource("6_moitf")
+theme_override_icons/unchecked = ExtResource("7_7v15t")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_8i141")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_f7xqd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ggfbs")
+button_pressed = true
+text = "Fullscreen"
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.445
+anchor_top = 0.49
+anchor_right = 0.445
+anchor_bottom = 0.49
+offset_left = -580.0
+offset_top = -41.5
+offset_right = 580.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_u458x")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "Screen Size"
+horizontal_alignment = 1
+
+[node name="ScreenSizes" type="TabBar" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("4_u458x")
+theme_override_colors/font_selected_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hovered_color = Color(1, 1, 1, 1)
+theme_override_colors/font_unselected_color = Color(0, 1, 0.862745, 1)
+theme_override_colors/drop_mark_color = Color(0, 1, 0.862745, 1)
+clip_tabs = false
+tab_count = 4
+tab_0/title = "1024 x 768"
+tab_1/title = "1280 x 1024"
+tab_2/title = "1366 x 768"
+tab_3/title = "1920 x 1080"
+
+[node name="AudioSliders" type="GridContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.29
+anchor_top = 0.67
+anchor_right = 0.6
+anchor_bottom = 0.67
+offset_left = -45.4
+offset_top = -66.0
+offset_right = 45.4
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Label3" type="Label" parent="AudioSliders"]
+layout_mode = 2
+theme = ExtResource("4_u458x")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "Master"
+horizontal_alignment = 2
+
+[node name="Master" parent="AudioSliders" instance=ExtResource("4_nysh1")]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+bus_name = "Master"
+
+[node name="Label" type="Label" parent="AudioSliders"]
+layout_mode = 2
+theme = ExtResource("4_u458x")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "SFX"
+horizontal_alignment = 2
+
+[node name="SFX" parent="AudioSliders" instance=ExtResource("4_nysh1")]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="Label2" type="Label" parent="AudioSliders"]
+layout_mode = 2
+theme = ExtResource("4_u458x")
+theme_override_colors/font_color = Color(0, 1, 0.862745, 1)
+text = "Music"
+horizontal_alignment = 2
+
+[node name="Music" parent="AudioSliders" instance=ExtResource("4_nysh1")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="BackButton" parent="." instance=ExtResource("3_qbbkt")]
+
+[connection signal="mouse_exited" from="VSyncCheckbox" to="." method="_on_v_sync_checkbox_mouse_exited"]
+[connection signal="toggled" from="VSyncCheckbox" to="." method="_on_v_sync_checkbox_toggled"]
+[connection signal="mouse_exited" from="FullScreenCheckbox" to="." method="_on_v_sync_checkbox_mouse_exited"]
+[connection signal="toggled" from="FullScreenCheckbox" to="." method="_on_full_screen_checkbox_toggled"]
+[connection signal="tab_changed" from="VBoxContainer/ScreenSizes" to="." method="_on_screen_sizes_tab_changed"]

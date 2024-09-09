@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://dw1grfqrhqq5x"]
+
+[ext_resource type="Texture2D" uid="uid://dlwt4h8veo6h1" path="res://Images/UI/TitleButtonSmall.png" id="1_27ojq"]
+[ext_resource type="Texture2D" uid="uid://dwv5hpg3jyf7h" path="res://Images/UI/TitleButtonSmallPressed.png" id="2_4amgp"]
+[ext_resource type="Texture2D" uid="uid://c4i5q8aaq05nl" path="res://Images/UI/TitleButtonSmallHover.png" id="3_7uwa4"]
+[ext_resource type="Texture2D" uid="uid://cx4gudsxf4du1" path="res://Images/UI/TitleButtonSmallLocked.png" id="4_hqf82"]
+[ext_resource type="Script" path="res://LevelSelectbutton.gd" id="5_8u7q4"]
+[ext_resource type="Theme" uid="uid://tddux1ou2ypm" path="res://Scenes/Misc/new_theme.tres" id="6_4s68w"]
+[ext_resource type="AudioStream" uid="uid://c80s2dhjgc4ef" path="res://Audio/SFX/ButtonClick.mp3" id="7_g6vyo"]
+[ext_resource type="AudioStream" uid="uid://bp6oahahwoqqe" path="res://Audio/SFX/ButtonHover.mp3" id="8_mhlij"]
+
+[node name="LevelSelectButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_27ojq")
+texture_pressed = ExtResource("2_4amgp")
+texture_hover = ExtResource("3_7uwa4")
+texture_disabled = ExtResource("4_hqf82")
+script = ExtResource("5_8u7q4")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_4s68w")
+theme_override_colors/font_color = Color(0, 0.392157, 0.392157, 1)
+text = "a"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_g6vyo")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_mhlij")
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

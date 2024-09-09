@@ -1,0 +1,183 @@
+[gd_scene load_steps=17 format=3 uid="uid://c3vdb1yka6r6j"]
+
+[ext_resource type="Script" path="res://Scenes/Misc/title_screen.gd" id="1_pdfjc"]
+[ext_resource type="Texture2D" uid="uid://d1tljouibjh0c" path="res://Images/UI/TitleBackground.png" id="1_vqucj"]
+[ext_resource type="Texture2D" uid="uid://j1he827x70xr" path="res://Images/UI/TitleScreenMagnet1.png" id="7_krwe5"]
+[ext_resource type="Texture2D" uid="uid://cbkfuqowouhr3" path="res://Images/UI/TitleScreenMagnet2.png" id="8_s6asm"]
+[ext_resource type="Texture2D" uid="uid://cgru18bh4cv1e" path="res://Images/UI/TitleScreenMagnet3.png" id="9_w6xmg"]
+[ext_resource type="Texture2D" uid="uid://cyu6op85cenlb" path="res://Images/UI/TitleScreenLetter_0.png" id="10_e7x8s"]
+[ext_resource type="Texture2D" uid="uid://djff38h6bki6t" path="res://Images/UI/TitleScreenLetter_1.png" id="11_uxn4e"]
+[ext_resource type="Texture2D" uid="uid://cjv4ryyth3j32" path="res://Images/UI/TitleScreenLetter_2.png" id="12_tfila"]
+[ext_resource type="Texture2D" uid="uid://da4swpft26oud" path="res://Images/UI/TitleScreenLetter_3.png" id="13_7kf4f"]
+[ext_resource type="Texture2D" uid="uid://c348vb21vh2gi" path="res://Images/UI/TitleScreenLetter_4.png" id="14_2ajul"]
+[ext_resource type="Texture2D" uid="uid://bom4cakh4yiap" path="res://Images/UI/TitleScreenLetter_5.png" id="15_5v7l1"]
+[ext_resource type="Texture2D" uid="uid://debbopm4dwue5" path="res://Images/UI/TitleScreenLetter_6.png" id="16_coorl"]
+[ext_resource type="Texture2D" uid="uid://bf8r18qo31pe1" path="res://Images/UI/TitleScreenLetter_7.png" id="17_tbanr"]
+[ext_resource type="Texture2D" uid="uid://bltrrcu8ap0vb" path="res://Images/UI/TitleScreenLetter_8.png" id="18_7embd"]
+[ext_resource type="PackedScene" uid="uid://f1cy3wb2ii1w" path="res://Scenes/UI/large_button.tscn" id="19_4qwac"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_1o8fn"]
+frames = 3
+frame_0/texture = ExtResource("7_krwe5")
+frame_0/duration = 0.5
+frame_1/texture = ExtResource("8_s6asm")
+frame_1/duration = 0.5
+frame_2/texture = ExtResource("9_w6xmg")
+frame_2/duration = 0.5
+
+[node name="TitleScreen" type="CanvasLayer"]
+script = ExtResource("1_pdfjc")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_vqucj")
+
+[node name="TitleMagnets" type="TextureRect" parent="."]
+anchors_preset = -1
+anchor_left = 0.075
+anchor_top = 0.075
+anchor_right = 0.75
+anchor_bottom = 0.075
+offset_right = 104.0
+offset_bottom = 192.0
+texture = SubResource("AnimatedTexture_1o8fn")
+
+[node name="TitleLetters" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LetterM" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.16
+anchor_top = 0.1
+anchor_right = 0.162
+anchor_bottom = 0.1
+offset_right = 139.0
+offset_bottom = 139.0
+texture = ExtResource("10_e7x8s")
+
+[node name="LetterA" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.23
+anchor_top = 0.1
+anchor_right = 0.23
+anchor_bottom = 0.1
+offset_right = 139.0
+offset_bottom = 139.0
+texture = ExtResource("11_uxn4e")
+
+[node name="LetterG" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.29
+anchor_top = 0.1
+anchor_right = 0.29
+anchor_bottom = 0.1
+offset_right = 139.0
+offset_bottom = 139.0
+texture = ExtResource("12_tfila")
+
+[node name="LetterN" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.355
+anchor_top = 0.1
+anchor_right = 0.355
+anchor_bottom = 0.1
+offset_right = 139.0
+offset_bottom = 139.0
+texture = ExtResource("13_7kf4f")
+
+[node name="LetterE" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.422
+anchor_top = 0.1
+anchor_right = 0.422
+anchor_bottom = 0.1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("14_2ajul")
+
+[node name="LetterF" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48
+anchor_top = 0.1
+anchor_right = 0.48
+anchor_bottom = 0.1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("15_5v7l1")
+
+[node name="LetterL" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.535
+anchor_top = 0.1
+anchor_right = 0.535
+anchor_bottom = 0.1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("16_coorl")
+
+[node name="LetterO" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.585
+anchor_top = 0.1
+anchor_right = 0.585
+anchor_bottom = 0.1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("17_tbanr")
+
+[node name="LetterW" type="TextureRect" parent="TitleLetters"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.65
+anchor_top = 0.1
+anchor_right = 0.66
+anchor_bottom = 0.1
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("18_7embd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.6
+anchor_right = 0.45
+anchor_bottom = 0.63
+offset_left = -180.0
+offset_top = -64.0
+offset_right = 180.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+
+[node name="LargeButton" parent="VBoxContainer" instance=ExtResource("19_4qwac")]
+layout_mode = 2
+label = "Level Select"
+next_scene = "res://Scenes/Misc/level_select_screen.tscn"
+type = 1
+
+[node name="LargeButton2" parent="VBoxContainer" instance=ExtResource("19_4qwac")]
+layout_mode = 2
+label = "Settings"
+next_scene = "res://Scenes/Misc/settings_screen.tscn"
+type = 1
+
+[node name="LargeButton3" parent="VBoxContainer" instance=ExtResource("19_4qwac")]
+layout_mode = 2
+label = "Exit Game"
+type = 2

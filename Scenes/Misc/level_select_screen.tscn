@@ -1,0 +1,78 @@
+[gd_scene load_steps=9 format=3 uid="uid://ic245tvc6rpr"]
+
+[ext_resource type="Texture2D" uid="uid://d1tljouibjh0c" path="res://Images/UI/TitleBackground.png" id="1_kyfac"]
+[ext_resource type="Script" path="res://Scenes/Misc/level_select_screen.gd" id="1_mheg4"]
+[ext_resource type="PackedScene" uid="uid://nf2swyg0awi0" path="res://Scenes/Levels/level_02.tscn" id="5_idc3o"]
+[ext_resource type="PackedScene" uid="uid://bpefgujt8jcgb" path="res://Scenes/Levels/level_03.tscn" id="6_nm3y2"]
+[ext_resource type="PackedScene" uid="uid://d2vbjr0p2eyco" path="res://Scenes/Levels/level_04.tscn" id="7_qljkh"]
+[ext_resource type="PackedScene" uid="uid://0k4u0fo5dpyt" path="res://Scenes/Misc/back_button.tscn" id="8_q4ldf"]
+[ext_resource type="PackedScene" uid="uid://dw1grfqrhqq5x" path="res://Scenes/Misc/level_selectbutton.tscn" id="8_uo8jf"]
+[ext_resource type="PackedScene" uid="uid://cv5dsqrs6vubp" path="res://Scenes/Levels/level_01.tscn" id="9_nc561"]
+
+[node name="LevelSelectScreen" type="CanvasLayer"]
+script = ExtResource("1_mheg4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_kyfac")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.45
+anchor_top = 0.45
+anchor_right = 0.45
+anchor_bottom = 0.45
+offset_left = -328.0
+offset_right = 328.0
+offset_bottom = 260.0
+grow_horizontal = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 5
+
+[node name="LevelSelectbutton" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+next_scene = ExtResource("9_nc561")
+label = "1"
+
+[node name="LevelSelectButton" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+next_scene = ExtResource("5_idc3o")
+label = "2"
+
+[node name="LevelSelectButton2" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+next_scene = ExtResource("6_nm3y2")
+label = "3"
+
+[node name="LevelSelectButton3" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+next_scene = ExtResource("7_qljkh")
+label = "4"
+
+[node name="LevelSelectButton4" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+label = "5"
+
+[node name="LevelSelectButton5" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+label = "6"
+
+[node name="LevelSelectButton6" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+label = "7"
+
+[node name="LevelSelectButton7" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+label = "8"
+
+[node name="LevelSelectButton8" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+label = "9"
+
+[node name="LevelSelectButton9" parent="GridContainer" instance=ExtResource("8_uo8jf")]
+layout_mode = 2
+label = "10"
+
+[node name="BackButton2" parent="." instance=ExtResource("8_q4ldf")]

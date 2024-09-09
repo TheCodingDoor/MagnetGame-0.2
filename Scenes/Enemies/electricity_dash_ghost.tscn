@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://duaxhs0kiil4d"]
+
+[ext_resource type="Script" path="res://ElectricityDashGhost.gd" id="1_eoxtp"]
+[ext_resource type="Texture2D" uid="uid://b3talwkxky2jt" path="res://Images/Enemies/Electricity Enemy V2 Particle.png" id="1_f84qk"]
+
+[node name="ElectricityDashGhost" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_f84qk")
+script = ExtResource("1_eoxtp")

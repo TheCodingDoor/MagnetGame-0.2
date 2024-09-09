@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsh66vieiahb8"]
+
+[ext_resource type="Texture2D" uid="uid://boxj0bu5vvk2c" path="res://Images/Objects/Box.png" id="1_h78xb"]
+[ext_resource type="Script" path="res://Scenes/Objects/box.gd" id="1_thhpe"]
+[ext_resource type="AudioStream" uid="uid://bm5f5pl6bhsxf" path="res://Audio/SFX/BoxCollision.mp3" id="3_x1ayb"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e66xu"]
+friction = 0.99
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc5da"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csn4d"]
+size = Vector2(64, 1)
+
+[node name="Box" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 7
+mass = 0.9
+physics_material_override = SubResource("PhysicsMaterial_e66xu")
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
+script = ExtResource("1_thhpe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_h78xb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pc5da")
+
+[node name="CollisionChecker" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionChecker"]
+position = Vector2(0, -32.5)
+shape = SubResource("RectangleShape2D_csn4d")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_x1ayb")
+volume_db = -25.0
+bus = &"SFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="CollisionChecker" to="." method="_on_collision_checker_body_entered"]
